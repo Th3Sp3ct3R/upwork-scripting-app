@@ -1,8 +1,9 @@
-"""Proposal Generator - Uses Claude API to generate custom proposals."""
+"""Proposal Generator - Uses AI API to generate custom proposals."""
 
 import logging
 import json
-from anthropic import Anthropic
+import re
+from openai import OpenAI
 from db.database import exec_query
 import config
 from datetime import datetime
@@ -10,7 +11,10 @@ from datetime import datetime
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-client = Anthropic()
+client = OpenAI(
+    api_key=config.AI_API_KEY,
+    base_url=config.AI_BASE_URL,
+)
 
 SYSTEM_PROMPT = """You are writing Upwork proposals for a skilled developer named Alex Chen. Their background:
 - Built and operate a large-scale Instagram automation platform managing 200+ accounts
@@ -83,41 +87,59 @@ Description: {job['description']}
     try:
         logger.info(f"🤖 Generating proposal for: {job['title'][:50]}...")
         
-        response = client.messages.create(
-            model=config.CLAUDE_MODEL,
+        response = client.chat.completions.create(
+            model=config.AI_MODEL,
             max_tokens=1024,
-            system=SYSTEM_PROMPT,
             messages=[
+                {
+                    "role": "system",
+                    "content": SYSTEM_PROMPT
+                },
                 {
                     "role": "user",
                     "content": f"Generate a proposal for this Upwork job:\n{job_context}"
                 }
             ]
         )
-        
-        # Parse response
-        proposal_json = response.content[0].text
-        proposal_data = json.loads(proposal_json)
-        
+
+        # Parse response — handle None, markdown fences, or plain text
+        raw = response.choices[0].message.content or ""
+        raw = raw.strip()
+
+        # Strip markdown code fences if present
+        if raw.startswith("```"):
+            raw = re.sub(r"^```(?:json)?\s*", "", raw)
+            raw = re.sub(r"\s*```$", "", raw)
+            raw = raw.strip()
+
+        # Try JSON parse
+        try:
+            proposal_data = json.loads(raw)
+            proposal_text = proposal_data.get("proposal", raw)
+        except (json.JSONDecodeError, TypeError):
+            # Not valid JSON — use raw text as the proposal
+            proposal_text = raw
+
+        if not proposal_text:
+            logger.error("AI returned empty proposal")
+            return False
+
         # Store in database
         exec_query(
             """INSERT INTO proposals (job_id, proposal_text, status, generated_at)
                VALUES (?, ?, 'pending', ?)""",
-            (job_id, proposal_data['proposal'], datetime.now())
+            (job_id, proposal_text, datetime.now())
         )
-        
+
         # Update job status
         exec_query(
             "UPDATE jobs SET status = 'proposal_ready' WHERE id = ?",
             (job_id,)
         )
-        
-        logger.info(f"✅ Proposal generated: {proposal_data['opening_hook'][:50]}...")
+
+        logger.info(f"✅ Proposal generated: {proposal_text[:60]}...")
         return True
-        
-    except json.JSONDecodeError as e:
-        logger.error(f"Failed to parse Claude response as JSON: {e}")
-        return False
+
     except Exception as e:
         logger.error(f"Error generating proposal: {e}")
         return False

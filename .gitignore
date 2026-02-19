@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Browser State (Playwright session/cookies)
+.browser_state/
+
 # Database
 *.db
 *.sqlite

@@ -54,21 +54,67 @@ def score_whitelist(title, description):
     
     return score
 
+def check_client_filters(job):
+    """Check job against CLIENT_FILTERS config. Returns (pass, reason) tuple."""
+    cf = config.CLIENT_FILTERS
+
+    # Client spend minimum
+    if cf.get("min_client_spent", 0) > 0:
+        spent = float(job.get("client_spent") or "0")
+        if spent < cf["min_client_spent"]:
+            return False, "low_client_spend"
+
+    # Payment verified
+    if cf.get("require_payment_verified"):
+        if not job.get("client_verified"):
+            return False, "unverified_payment"
+
+    # Country allow/block lists
+    country = (job.get("client_country") or "").strip()
+    if cf.get("allowed_countries") and country:
+        if country not in cf["allowed_countries"]:
+            return False, f"country_blocked:{country}"
+    if cf.get("blocked_countries") and country:
+        if country in cf["blocked_countries"]:
+            return False, f"country_blocked:{country}"
+
+    # Job type
+    if cf.get("allowed_job_types"):
+        jtype = (job.get("job_type") or "").strip()
+        if jtype and jtype not in cf["allowed_job_types"]:
+            return False, f"job_type:{jtype}"
+
+    # Experience level
+    if cf.get("allowed_experience"):
+        level = (job.get("experience_level") or "").strip()
+        # Normalize Upwork tier labels like "jsn_Intermediate_206" → "Intermediate"
+        for allowed in cf["allowed_experience"]:
+            if allowed.lower() in level.lower():
+                break
+        else:
+            if level:
+                return False, f"experience_level:{level}"
+
+    return True, ""
+
+
 def filter_job(job_id):
     """Filter a single job and update its status and score."""
-    # Get job from DB
+    # Get job from DB (including new client columns)
     result = exec_query(
-        "SELECT id, title, description, budget FROM jobs WHERE id = ?",
+        """SELECT id, title, description, budget, client_country, client_spent,
+                  client_verified, proposals_tier, experience_level, job_type
+           FROM jobs WHERE id = ?""",
         (job_id,),
         fetch=True
     )
-    
+
     if not result:
         logger.warning(f"Job {job_id} not found")
         return False
-    
+
     job = result[0]
-    
+
     # Check blacklist
     if check_blacklist(job['title'], job['description'] or ''):
         exec_query(
@@ -77,7 +123,7 @@ def filter_job(job_id):
         )
         logger.info(f"❌ Filtered out (blacklist): {job['title'][:50]}")
         return False
-    
+
     # Check budget
     if not is_budget_acceptable(job['budget']):
         exec_query(
@@ -86,10 +132,20 @@ def filter_job(job_id):
         )
         logger.info(f"❌ Filtered out (budget): {job['title'][:50]}")
         return False
-    
+
+    # Check client filters
+    client_pass, reason = check_client_filters(job)
+    if not client_pass:
+        exec_query(
+            "UPDATE jobs SET status = 'filtered_out', filter_reason = ? WHERE id = ?",
+            (reason, job_id)
+        )
+        logger.info(f"❌ Filtered out ({reason}): {job['title'][:50]}")
+        return False
+
     # Score whitelist
     score = score_whitelist(job['title'], job['description'] or '')
-    
+
     if score >= config.FILTER_WHITELIST_MIN_SCORE:
         exec_query(
             "UPDATE jobs SET status = 'pending_proposal', filter_score = ? WHERE id = ?",

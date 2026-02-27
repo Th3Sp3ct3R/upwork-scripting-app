@@ -1,0 +1,122 @@
+[
+  {
+    "id": "scraper_01",
+    "username": "ACCOUNT_1_USERNAME",
+    "userId": "ACCOUNT_1_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_02",
+    "username": "ACCOUNT_2_USERNAME",
+    "userId": "ACCOUNT_2_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_03",
+    "username": "ACCOUNT_3_USERNAME",
+    "userId": "ACCOUNT_3_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_04",
+    "username": "ACCOUNT_4_USERNAME",
+    "userId": "ACCOUNT_4_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_05",
+    "username": "ACCOUNT_5_USERNAME",
+    "userId": "ACCOUNT_5_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Android 13; Mobile; rv:120.0) Gecko/120.0 Firefox/120.0",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_06",
+    "username": "ACCOUNT_6_USERNAME",
+    "userId": "ACCOUNT_6_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_07",
+    "username": "ACCOUNT_7_USERNAME",
+    "userId": "ACCOUNT_7_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_08",
+    "username": "ACCOUNT_8_USERNAME",
+    "userId": "ACCOUNT_8_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_09",
+    "username": "ACCOUNT_9_USERNAME",
+    "userId": "ACCOUNT_9_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  },
+  {
+    "id": "scraper_10",
+    "username": "ACCOUNT_10_USERNAME",
+    "userId": "ACCOUNT_10_USER_ID",
+    "token": "Bearer IGT:2:TOKEN_HERE",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0",
+    "cookies": {
+      "sessionid": "SESSION_ID_HERE",
+      "X-MID": "X-MID_HERE",
+      "ds_user_id": "USER_ID_HERE"
+    }
+  }
+]

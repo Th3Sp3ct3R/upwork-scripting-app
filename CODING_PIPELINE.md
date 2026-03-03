@@ -101,6 +101,17 @@
 
 ## 🟡 HIGH (This Week)
 
+- [WIP] **Build instagrowth-saas Client Portal (All 6 Pages)**
+  - Status: FRONTEND_DEVELOPER building entire client-facing UI
+  - Pages: Landing, Onboarding, Dashboard, Accounts, Affinity, Agent Duties
+  - Owner: FRONTEND_DEVELOPER_INSTAGROWTH
+  - Est: 3 hours
+  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/frontend/`
+  - Started: Mar 3, 14:00 PST
+  - Integration: Sh3dw's designs + Railway backend + Vercel deployment
+
+## 🟡 HIGH (This Week - Blocked/Waiting)
+
 - [ ] **MCP Phase 2: Test instagrowth-mcp**
   - Status: Scaffolding complete, need testing
   - Action: npm install, test tools via inspector, measure perf

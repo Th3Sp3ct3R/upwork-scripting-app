@@ -387,18 +387,44 @@ Theta-infused trap beat generator + Gemini Lyria API. Complete. `/Users/growthgo
 6. Enable Telegram link parsing for watchlist auto-population
 7. Run first autonomous Upwork cycle (POST /api/cycle/run)
 
-### 📊 ANDROID API DECISION (Mar 3, 2026)
-**Current State:** Untested Python service exists (instagrapi), competitor may use same stack
+### 📊 MCP ARCHITECTURE DECISION (Mar 3, 2026) ✅
+**Status:** Path B (separate MCP repo) — SCAFFOLDING COMPLETE
 
-**Candidate Framework:** mcp-use (user's own MCP SDK, ready to use)
+**Build Mode:** Parallel (test Python service while building MCP)
 
-**Recommendation:** DO NOT BUILD YET
-- Test existing Python service first (1-2 weeks)
-- Only build Android API MCP if existing approach fails
-- If needed: Use mcp-use TypeScript framework on port 5555 (separate repo)
-- Keep affinity engine + optimization hidden from agents
+**Created:** instagrowth-mcp/ repository
+- Location: `/Users/growthgod/.openclaw/workspace/instagrowth-mcp/`
+- Port: 5555
+- Framework: mcp-use + TypeScript
+- Git: Initialized, 2 commits
 
-**Architecture Decision:** Path B (separate MCP repo)
-- Agents call via MCP protocol, not direct code access
-- Insulates Instagram API changes from main SaaS
-- Can license API access independently later
+**Phase 1 (COMPLETE):**
+- ✅ MCP server scaffold (src/index.ts, 5 tools)
+- ✅ PythonBridge HTTP client (wraps port 8000)
+- ✅ Zod schemas (all tools type-safe)
+- ✅ Docker setup (compose + Dockerfile)
+- ✅ Complete documentation (README + PROJECT_STATUS)
+
+**Phase 2 (NEXT):**
+- Test Python service (port 8000)
+- Run MCP server (npm run dev)
+- Test tools via inspector
+- Measure performance + stability
+- Timeline: 1 week
+
+**5 Tools Exposed:**
+1. `execute_reaction` — like/comment/follow/post
+2. `check_account_status` — online/banned/2FA status
+3. `scrape_targets` — get followers/following
+4. `manage_session` — login/restore/2FA
+5. `get_mcp_status` — health check
+
+**Agent Integration (Phase 3):**
+- Sp3ct3R calls MCP directly (not backend)
+- Sh3dw calls MCP for story reactions
+- Backend can also use MCP (optional)
+
+**Long-term (Phase 4):**
+- Deploy to Railway (separate service)
+- Enable licensing (MCP access tokens)
+- License 2-5x markup vs SaaS

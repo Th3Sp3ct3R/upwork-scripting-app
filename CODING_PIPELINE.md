@@ -33,13 +33,12 @@
   - Est: 4 hours
   - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-mcp/`
 
-- [WIP] **Investigate Fleet Sync Issue**
-  - Status: 6 unprocessed posts (39 scheduled vs 33 executed)
-  - Action: Debug lock timeout race condition
+- [x] **Investigate Fleet Sync Issue** ✅ (Mar 3, 13:39 PST)
   - Owner: FLEET_SYNC_DEBUG agent
-  - Est: 3 hours
-  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/backend/src/routes/orchestration.ts`
-  - Started: Mar 3, 01:45 UTC
+  - Time: 2m3s
+  - Result: ROOT CAUSE FOUND — TOCTOU race condition in tryAcquireLock(). Lock stolen between SELECT and INSERT. Secondary: non-logged_in accounts silently skipped.
+  - Fix: Atomic INSERT...ON CONFLICT WHERE release_at <= NOW() RETURNING (single statement, no gap). Patch 2 files.
+  - Priority: 🔴 Critical — causes data loss (posts not executing)
 
 - [WIP] **Deploy SCRAPERS_JSON to Railway**
   - Status: Env var missing, backend 502 Bad Gateway

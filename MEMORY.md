@@ -194,6 +194,41 @@
 
 ---
 
+## PROJECT NAVIGATION (Mar 3, 2026)
+
+### Main Projects
+- **instagrowth-saas** (Full-stack SaaS, Vercel + Railway)
+  - Frontend: https://frontend-orpin-seven-32.vercel.app
+  - Backend: https://instagrowth-saas-production.up.railway.app
+  - Docs: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/PROJECT_PROGRESS.md`
+
+- **instagrowth-mcp** (Instagram MCP server, standby)
+  - Port: 5555 (when activated)
+  - Docs: `/Users/growthgod/.openclaw/workspace/instagrowth-mcp/PROJECT_STATUS.md`
+
+### Dashboards (All Live)
+- 🎛️ **Dashboard HUB** (port 4000) — Central command, links to all
+- 🎯 **Mission Kanban** (port 4002) — Task tracking + agent work
+- 📊 **Models Runway** (port 3333) — Content inventory
+- 📚 **Watchlist** (port 4001) — 138 links organized
+- 💼 **Upwork Auto-Apply** (port 9000) — Job feed
+
+### Configuration Files (Read First)
+- `CLAUDE.md` — Model routing (LM Studio + Haiku fallback)
+- `CODING_PIPELINE.md` — Task queue (agents pick up tasks here)
+- `TASK_WORKFLOW.md` — How to execute + track tasks
+- `MISSION_KANBAN.md` — Dashboard system documentation
+- `PROJECT_PROGRESS.md` — Full history + decisions
+- `MEMORY.md` — Long-term memory (this file)
+
+### Services Running
+- Python FastAPI (port 8000) — instagram-private-api wrapper
+- LM Studio (port 1234) — Local models (qwen, gemma)
+- Backend API (port 3005 local, Railway prod) — Express server
+- Frontend (port 3000 local, Vercel prod) — Next.js
+
+---
+
 ## THE GANG (Multi-Agent Setup - Feb 21, 2026)
 
 | Agent | ID | Role | Model | Status |
@@ -411,12 +446,28 @@ Theta-infused trap beat generator + Gemini Lyria API. Complete. `/Users/growthgo
 - Auto-update as agents mark [WIP] and [x]
 - No database needed (pure file-based)
 
+### 📋 SESSION SUMMARY (Mar 3, 2026)
+
+**Major Accomplishments:**
+1. ✅ Created instagrowth-mcp scaffold (Phase 1 complete, port 5555)
+2. ✅ Built Mission Kanban Dashboard (port 4002, task tracking)
+3. ✅ Built Dashboard HUB (port 4000, central command)
+4. ✅ Established coding pipeline (CODING_PIPELINE.md)
+5. ✅ Configured LM Studio + Qwen 3.5 (with Haiku fallback)
+6. ✅ Created comprehensive documentation (CLAUDE.md, MISSION_KANBAN.md, PROJECT_PROGRESS.md)
+7. ✅ Spawned Sp3ct3R for critical task execution
+
+**Key Decision:** Do NOT rebuild Android API yet. Test Python service first (untested in production).
+
+**Architecture Stance:** If Python service works → optimize. If fails → build MCP v2 (separate repo, instagrowth-mcp).
+
 ### 🎯 NEXT CRITICAL ACTIONS
 1. **TEST PYTHON SERVICE FIRST** (DO NOT BUILD ANDROID API YET)
    - Validate Python FastAPI (port 8000) is running & working
    - Test instagrapi wrapper with manual API calls
    - Measure ban rates vs GeeLark vs scraper approach
    - This determines if Android API rebuild is needed
+   - Status: Sp3ct3R assigned (critical priority)
 2. Deploy SCRAPERS_JSON to Railway (unblocks backend)
 3. Restart Dcash bot daemon
 4. Investigate fleet sync discrepancy (6 posts)

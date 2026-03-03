@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Content QA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#6c5ce7;--green:#00b894;--red:#e17055;--orange:#fdcb6e;--text:#e0e0e0;--muted:#666}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);padding:2rem}
+h1{font-size:1.4rem;margin-bottom:.3rem}
+.sub{color:var(--muted);font-size:.85rem;margin-bottom:2rem}
+.layout{display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+.card h3{font-size:.9rem;margin-bottom:1rem}
+.video-frame{width:100%;aspect-ratio:9/16;background:linear-gradient(180deg,#1a1040,#0d0d2b);border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.video-frame .play{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;backdrop-filter:blur(10px)}
+.overlay-check{position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+.overlay-text{color:#fff;font-size:.85rem;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.frame-indicator{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);padding:.2rem .5rem;border-radius:6px;font-size:.7rem;color:var(--green)}
+.metric{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.metric:last-child{border:none}
+.badge{padding:.15rem .5rem;border-radius:12px;font-size:.7rem;font-weight:600}
+.badge-pass{background:rgba(0,184,148,.15);color:var(--green)}
+.badge-warn{background:rgba(253,203,110,.15);color:var(--orange)}
+.badge-fail{background:rgba(225,112,85,.15);color:var(--red)}
+.ar-visual{display:flex;gap:1rem;align-items:center;margin-top:.5rem}
+.ar-box{border:2px dashed;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600}
+.timeline{display:flex;gap:2px;margin-top:.5rem;height:30px}
+.tl-seg{flex:1;border-radius:3px;cursor:pointer;transition:opacity .2s}
+.tl-seg:hover{opacity:.7}
+.score-big{font-size:3rem;font-weight:800;text-align:center;margin:1rem 0}
+</style>
+</head>
+<body>
+<h1>🎬 Video Content QA</h1>
+<p class="sub">Frame-level quality analysis for VANTA content</p>
+<div class="layout">
+  <div>
+    <div class="card">
+      <h3>🖼️ Frame Preview</h3>
+      <div class="video-frame">
+        <div class="frame-indicator">Frame 147/302 • 1080×1920</div>
+        <div class="play">▶</div>
+        <div class="overlay-check">
+          <div class="overlay-text">✨ Transform your morning routine with these 5 tips! Link in bio 👇</div>
+        </div>
+      </div>
+      <div style="margin-top:.75rem;font-size:.75rem;color:var(--muted)">Frame timeline (quality map):</div>
+      <div class="timeline" id="timeline"></div>
+      <div style="display:flex;justify-content:space-between;font-size:.6rem;color:var(--muted);margin-top:.3rem"><span>0:00</span><span>0:15</span><span>0:30</span></div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1.5rem">
+    <div class="card">
+      <h3>📊 Quality Score</h3>
+      <div class="score-big" style="color:var(--green)">84</div>
+      <div style="text-align:center;font-size:.8rem;color:var(--muted)">out of 100</div>
+    </div>
+    <div class="card">
+      <h3>🔍 Quality Metrics</h3>
+      <div class="metric"><span>Resolution</span><span class="badge badge-pass">✓ 1080×1920</span></div>
+      <div class="metric"><span>Frame Rate</span><span class="badge badge-pass">✓ 30fps</span></div>
+      <div class="metric"><span>Bitrate</span><span class="badge badge-pass">✓ 8.2 Mbps</span></div>
+      <div class="metric"><span>Stabilization</span><span class="badge badge-warn">⚠ Minor shake</span></div>
+      <div class="metric"><span>Audio Levels</span><span class="badge badge-pass">✓ -14 LUFS</span></div>
+      <div class="metric"><span>Text Readability</span><span class="badge badge-pass">✓ Good contrast</span></div>
+    </div>
+    <div class="card">
+      <h3>📐 Aspect Ratio Compliance</h3>
+      <div class="ar-visual">
+        <div class="ar-box" style="width:40px;height:70px;border-color:var(--green);color:var(--green)">9:16 ✓</div>
+        <div class="ar-box" style="width:55px;height:55px;border-color:var(--muted);color:var(--muted)">1:1</div>
+        <div class="ar-box" style="width:70px;height:40px;border-color:var(--muted);color:var(--muted)">16:9</div>
+        <div class="ar-box" style="width:50px;height:60px;border-color:var(--muted);color:var(--muted)">4:5</div>
+      </div>
+      <div class="metric" style="margin-top:1rem"><span>Platform</span><span>IG Reels ✓</span></div>
+      <div class="metric"><span>Safe Zone</span><span class="badge badge-pass">✓ Content within</span></div>
+    </div>
+  </div>
+</div>
+<script>
+const tl=document.getElementById('timeline');
+for(let i=0;i<30;i++){const s=document.createElement('div');s.className='tl-seg';const q=Math.random();s.style.background=q>.7?'var(--green)':q>.4?'var(--orange)':'var(--red)';s.title=`Frame ${i*10}: Quality ${Math.round(q*100)}%`;tl.appendChild(s)}
+</script>
+</body>
+</html>

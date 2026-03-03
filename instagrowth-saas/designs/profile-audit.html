@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Audit Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#6c5ce7;--green:#00b894;--red:#e17055;--text:#e0e0e0;--muted:#666}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);padding:2rem}
+h1{font-size:1.4rem;margin-bottom:.3rem}
+.sub{color:var(--muted);font-size:.85rem;margin-bottom:2rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+.card h3{font-size:.9rem;margin-bottom:1rem}
+.full{grid-column:span 2}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.5rem}
+.tl-dot{position:absolute;left:-2rem;top:4px;width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
+.tl-date{font-size:.7rem;color:var(--muted)}
+.tl-content{margin-top:.3rem}
+.diff{background:var(--bg);border-radius:8px;padding:.75rem;margin-top:.5rem;font-family:monospace;font-size:.8rem;line-height:1.6}
+.diff-del{color:var(--red);text-decoration:line-through}
+.diff-add{color:var(--green)}
+.delta-card{display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--bg);border-radius:10px;margin-bottom:.5rem}
+.delta-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.delta-info h4{font-size:.85rem}
+.delta-info p{font-size:.75rem;color:var(--muted)}
+.delta-val{margin-left:auto;font-size:1.1rem;font-weight:700}
+.delta-up{color:var(--green)}
+.delta-down{color:var(--red)}
+</style>
+</head>
+<body>
+<h1>🔎 Profile Audit Dashboard</h1>
+<p class="sub">@lifestyle_vibes – Historical analysis & engagement tracking</p>
+<div class="grid">
+  <div class="card">
+    <h3>📝 Bio Change Timeline</h3>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Mar 1, 2026</div><div class="tl-content"><strong>Bio Updated</strong><div class="diff"><span class="diff-del">✨ Living my best life | DM for collabs</span><br><span class="diff-add">✨ Lifestyle creator | 50K fam 💫 | Partnerships → link</span></div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Feb 14, 2026</div><div class="tl-content"><strong>Profile Photo Changed</strong><div class="diff"><span class="diff-del">studio_portrait_v2.jpg</span><br><span class="diff-add">outdoor_golden_hour.jpg</span></div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Jan 28, 2026</div><div class="tl-content"><strong>Bio Updated</strong><div class="diff"><span class="diff-del">Just vibes ✌️</span><br><span class="diff-add">✨ Living my best life | DM for collabs</span></div></div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Jan 5, 2026</div><div class="tl-content"><strong>Username Changed</strong><div class="diff"><span class="diff-del">@vibes_only_2025</span><br><span class="diff-add">@lifestyle_vibes</span></div></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>📊 Follower Deltas</h3>
+    <div class="delta-card"><div class="delta-icon" style="background:rgba(0,184,148,.15)">👥</div><div class="delta-info"><h4>Followers</h4><p>Last 30 days</p></div><div class="delta-val delta-up">+2,847</div></div>
+    <div class="delta-card"><div class="delta-icon" style="background:rgba(108,92,231,.15)">👤</div><div class="delta-info"><h4>Following</h4><p>Last 30 days</p></div><div class="delta-val delta-down">-124</div></div>
+    <div class="delta-card"><div class="delta-icon" style="background:rgba(116,185,255,.15)">💬</div><div class="delta-info"><h4>Avg Comments</h4><p>Per post</p></div><div class="delta-val delta-up">+18%</div></div>
+    <div class="delta-card"><div class="delta-icon" style="background:rgba(253,203,110,.15)">❤️</div><div class="delta-info"><h4>Avg Likes</h4><p>Per post</p></div><div class="delta-val delta-up">+32%</div></div>
+    <canvas id="followerChart" style="margin-top:1rem" height="120"></canvas>
+  </div>
+  <div class="card full">
+    <h3>🔥 Engagement Heatmap (Posts per day × Engagement rate)</h3>
+    <div style="display:grid;grid-template-columns:auto repeat(12,1fr);gap:3px;font-size:.65rem" id="heatmap"></div>
+  </div>
+</div>
+<script>
+new Chart(document.getElementById('followerChart'),{type:'line',data:{labels:['Feb 1','Feb 8','Feb 15','Feb 22','Mar 1'],datasets:[{label:'Followers',data:[47200,48100,48900,49500,50047],borderColor:'#6c5ce7',backgroundColor:'rgba(108,92,231,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#6c5ce7'}]},options:{plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1e1e2e'},ticks:{callback:v=>(v/1000).toFixed(1)+'K'}},x:{grid:{display:false}}}}});
+// Heatmap
+const hm=document.getElementById('heatmap');
+const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+// Header
+hm.innerHTML='<div></div>'+months.map(m=>`<div style="text-align:center;color:var(--muted)">${m}</div>`).join('');
+const colors=['#1a1a2e','#1e3a2f','#1e5a3f','#00b894','#00d4aa'];
+days.forEach(d=>{hm.innerHTML+=`<div style="color:var(--muted);padding-right:.5rem">${d}</div>`;for(let i=0;i<12;i++){const v=Math.floor(Math.random()*5);hm.innerHTML+=`<div style="background:${colors[v]};border-radius:3px;aspect-ratio:2;min-height:16px" title="${d} ${months[i]}: ${v*25}% engagement"></div>`}});
+</script>
+</body>
+</html>

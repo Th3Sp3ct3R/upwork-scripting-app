@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Quality Analyzer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#6c5ce7;--green:#00b894;--red:#e17055;--orange:#fdcb6e;--text:#e0e0e0;--muted:#666}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);padding:2rem}
+h1{font-size:1.4rem;margin-bottom:.3rem}
+.sub{color:var(--muted);font-size:.85rem;margin-bottom:2rem}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1100px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+.card h3{font-size:.9rem;margin-bottom:1rem}
+.preview{width:100%;aspect-ratio:1;background:linear-gradient(135deg,#2d1b69,#11998e);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:1rem}
+.score-ring{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin:0 auto 1rem}
+.score-ring.good{background:conic-gradient(var(--green) 0% 87%,var(--border) 87%);color:var(--green)}
+.score-ring.mid{background:conic-gradient(var(--orange) 0% 62%,var(--border) 62%);color:var(--orange)}
+.score-ring.bad{background:conic-gradient(var(--red) 0% 35%,var(--border) 35%);color:var(--red)}
+.score-inner{width:64px;height:64px;background:var(--card);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.metric{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.metric:last-child{border:none}
+.badge{padding:.15rem .5rem;border-radius:12px;font-size:.7rem;font-weight:600}
+.badge-pass{background:rgba(0,184,148,.15);color:var(--green)}
+.badge-warn{background:rgba(253,203,110,.15);color:var(--orange)}
+.badge-fail{background:rgba(225,112,85,.15);color:var(--red)}
+.histogram{display:flex;align-items:flex-end;gap:2px;height:60px;margin-top:.5rem}
+.hist-bar{flex:1;border-radius:2px 2px 0 0;min-height:2px}
+.suggestions{list-style:none;margin-top:.5rem}
+.suggestions li{padding:.5rem .75rem;margin:.3rem 0;background:var(--bg);border-radius:8px;font-size:.8rem;display:flex;gap:.5rem}
+</style>
+</head>
+<body>
+<h1>🔍 Content Quality Analyzer</h1>
+<p class="sub">AI-powered post analysis for VANTA</p>
+<div class="layout">
+  <div>
+    <div class="card">
+      <h3>📸 Post Preview</h3>
+      <div class="preview">🌅</div>
+      <div style="text-align:center">
+        <div class="score-ring good"><div class="score-inner">87</div></div>
+        <div style="font-size:.8rem;color:var(--muted)">Overall Quality Score</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1.5rem">
+    <div class="card">
+      <h3>📊 Quality Metrics</h3>
+      <div class="metric"><span>Resolution</span><span><span class="badge badge-pass">✓ 1080×1080</span></span></div>
+      <div class="metric"><span>Sharpness</span><span><span class="badge badge-pass">✓ 92/100</span></span></div>
+      <div class="metric"><span>Blur Detection</span><span><span class="badge badge-pass">✓ No blur</span></span></div>
+      <div class="metric"><span>Brightness</span><span><span class="badge badge-warn">⚠ Slightly dark</span></span></div>
+      <div class="metric"><span>Contrast</span><span><span class="badge badge-pass">✓ Good</span></span></div>
+      <div class="metric"><span>Noise Level</span><span><span class="badge badge-pass">✓ Low</span></span></div>
+      <div class="metric"><span>Text Readability</span><span><span class="badge badge-fail">✗ Too small</span></span></div>
+    </div>
+    <div class="card">
+      <h3>🎨 Color Histogram</h3>
+      <div style="display:flex;gap:1rem">
+        <div style="flex:1"><div style="font-size:.7rem;color:var(--muted);margin-bottom:.3rem">Red</div><div class="histogram" id="histR"></div></div>
+        <div style="flex:1"><div style="font-size:.7rem;color:var(--muted);margin-bottom:.3rem">Green</div><div class="histogram" id="histG"></div></div>
+        <div style="flex:1"><div style="font-size:.7rem;color:var(--muted);margin-bottom:.3rem">Blue</div><div class="histogram" id="histB"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>💡 Suggestions</h3>
+      <ul class="suggestions">
+        <li>⬆️ Increase brightness by 10-15% for better feed visibility</li>
+        <li>🔤 Enlarge text overlay to 24px+ for mobile readability</li>
+        <li>🎯 Crop slightly to improve rule-of-thirds composition</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+function makeHist(id,color){const el=document.getElementById(id);for(let i=0;i<16;i++){const b=document.createElement('div');b.className='hist-bar';const h=Math.random()*80+10;b.style.height=h+'%';b.style.background=color;el.appendChild(b)}}
+makeHist('histR','#e74c3c');makeHist('histG','#2ecc71');makeHist('histB','#3498db');
+</script>
+</body>
+</html>

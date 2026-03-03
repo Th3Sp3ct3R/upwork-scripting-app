@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaGrowth – Onboarding Flow</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--accent:#6c5ce7;--accent2:#a29bfe;--green:#00b894;--text:#e0e0e0;--muted:#666;--red:#e17055;--orange:#fdcb6e}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem}
+h1{font-size:1.4rem;margin-bottom:2rem;color:var(--accent2)}
+.stepper{display:flex;gap:0;margin-bottom:3rem;position:relative}
+.step-item{display:flex;align-items:center;gap:.5rem;cursor:pointer;padding:.5rem 1rem;position:relative}
+.step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;border:2px solid var(--border);color:var(--muted);transition:all .3s}
+.step-item.active .step-circle{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 20px rgba(108,92,231,.4)}
+.step-item.done .step-circle{background:var(--green);border-color:var(--green);color:#fff}
+.step-label{font-size:.8rem;color:var(--muted);transition:color .3s}
+.step-item.active .step-label,.step-item.done .step-label{color:var(--text)}
+.step-line{width:40px;height:2px;background:var(--border);align-self:center;transition:background .3s}
+.step-line.done{background:var(--green)}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;width:100%;max-width:560px;display:none;animation:fadeIn .4s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.4rem;margin-top:1rem}
+input[type=text],input[type=password]{width:100%;padding:.75rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none;transition:border .2s}
+input:focus{border-color:var(--accent)}
+.btn{display:inline-block;padding:.75rem 2rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.95rem;cursor:pointer;margin-top:1.5rem;transition:all .2s;font-weight:600}
+.btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+.vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.vibe-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;transition:all .3s}
+.vibe-card .emoji{font-size:2rem;margin-bottom:.5rem}
+.vibe-card .val{font-size:1.5rem;font-weight:700;color:var(--accent2)}
+.vibe-card .lbl{font-size:.75rem;color:var(--muted);margin-top:.25rem}
+.plan-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin-top:.75rem}
+.plan-icon{width:40px;height:40px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.plan-text{flex:1}
+.plan-text h4{font-size:.9rem;margin-bottom:.2rem}
+.plan-text p{font-size:.75rem;color:var(--muted)}
+.tag{display:inline-block;padding:.2rem .6rem;border-radius:20px;font-size:.7rem;font-weight:600;margin-left:.5rem}
+.tag-green{background:rgba(0,184,148,.15);color:var(--green)}
+.tag-orange{background:rgba(253,203,110,.15);color:var(--orange)}
+.lock-icon{font-size:3rem;text-align:center;margin:1rem 0}
+.success-check{font-size:4rem;text-align:center;margin:1rem 0;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
+</style>
+</head>
+<body>
+<h1>⚡ InstaGrowth Onboarding</h1>
+
+<div class="stepper" id="stepper">
+  <div class="step-item active" data-step="0"><div class="step-circle">1</div><div class="step-label">Handle</div></div>
+  <div class="step-line"></div>
+  <div class="step-item" data-step="1"><div class="step-circle">2</div><div class="step-label">Vibe</div></div>
+  <div class="step-line"></div>
+  <div class="step-item" data-step="2"><div class="step-circle">3</div><div class="step-label">Plan</div></div>
+  <div class="step-line"></div>
+  <div class="step-item" data-step="3"><div class="step-circle">4</div><div class="step-label">Secure</div></div>
+</div>
+
+<!-- Step 1: Handle Input -->
+<div class="panel active" id="panel-0">
+  <h2>Enter your Instagram handle</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem">We'll analyze your account's vibe and build a personalized growth plan.</p>
+  <label>Instagram Username</label>
+  <input type="text" placeholder="@yourusername" id="handleInput">
+  <button class="btn" onclick="goTo(1)">Analyze My Vibe →</button>
+</div>
+
+<!-- Step 2: Vibe Analysis -->
+<div class="panel" id="panel-1">
+  <h2>Your Vibe Analysis ✨</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem">Based on your last 30 posts</p>
+  <div class="vibe-grid">
+    <div class="vibe-card"><div class="emoji">🎨</div><div class="val">87%</div><div class="lbl">Aesthetic Score</div></div>
+    <div class="vibe-card"><div class="emoji">💬</div><div class="val">4.2%</div><div class="lbl">Engagement Rate</div></div>
+    <div class="vibe-card"><div class="emoji">📈</div><div class="val">+12%</div><div class="lbl">Growth Trend</div></div>
+    <div class="vibe-card"><div class="emoji">🎯</div><div class="val">Lifestyle</div><div class="lbl">Niche Match</div></div>
+  </div>
+  <div class="nav-row">
+    <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
+    <button class="btn" onclick="goTo(2)">See My Plan →</button>
+  </div>
+</div>
+
+<!-- Step 3: Plan Approval -->
+<div class="panel" id="panel-2">
+  <h2>Your Growth Plan</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem">AI-generated strategy tailored to your vibe</p>
+  <div class="plan-item"><div class="plan-icon">📸</div><div class="plan-text"><h4>Content Calendar <span class="tag tag-green">Auto</span></h4><p>3 posts/week, optimized timing at 9am & 7pm</p></div></div>
+  <div class="plan-item"><div class="plan-icon">🤖</div><div class="plan-text"><h4>Smart Engagement <span class="tag tag-green">Auto</span></h4><p>50 targeted interactions/day in your niche</p></div></div>
+  <div class="plan-item"><div class="plan-icon">#️⃣</div><div class="plan-text"><h4>Hashtag Strategy <span class="tag tag-orange">Review</span></h4><p>30 rotating hashtags, refreshed weekly</p></div></div>
+  <div class="plan-item"><div class="plan-icon">📊</div><div class="plan-text"><h4>Weekly Reports <span class="tag tag-green">Auto</span></h4><p>Performance digest every Sunday</p></div></div>
+  <div class="nav-row">
+    <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
+    <button class="btn" onclick="goTo(3)">Approve & Secure →</button>
+  </div>
+</div>
+
+<!-- Step 4: Password Gate -->
+<div class="panel" id="panel-3">
+  <div class="lock-icon">🔐</div>
+  <h2 style="text-align:center">Secure Your Account</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem;text-align:center">Set a password to protect your growth dashboard</p>
+  <label>Password</label>
+  <input type="password" placeholder="••••••••">
+  <label>Confirm Password</label>
+  <input type="password" placeholder="••••••••">
+  <div style="text-align:center">
+    <button class="btn" onclick="finish()">🚀 Launch My Growth</button>
+  </div>
+</div>
+
+<!-- Step 5: Success (hidden) -->
+<div class="panel" id="panel-4">
+  <div class="success-check">✅</div>
+  <h2 style="text-align:center">You're All Set!</h2>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem;text-align:center">Your growth engine is now active. Check your dashboard for real-time progress.</p>
+</div>
+
+<script>
+let current=0;
+function goTo(step){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+step).classList.add('active');
+  document.querySelectorAll('.step-item').forEach((s,i)=>{
+    s.classList.remove('active','done');
+    if(i<step)s.classList.add('done');
+    if(i===step)s.classList.add('active');
+  });
+  document.querySelectorAll('.step-line').forEach((l,i)=>{
+    l.classList.toggle('done',i<step);
+  });
+  current=step;
+}
+function finish(){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-4').classList.add('active');
+  document.querySelectorAll('.step-item').forEach(s=>{s.classList.remove('active');s.classList.add('done')});
+  document.querySelectorAll('.step-line').forEach(l=>l.classList.add('done'));
+}
+</script>
+</body>
+</html>

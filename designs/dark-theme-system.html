@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode Design System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwindcss.config={theme:{extend:{colors:{
+  surface:{DEFAULT:'#12121a','50':'#1e1e2e','100':'#252536','200':'#2d2d44'},
+  bg:'#0a0a0f',
+  accent:{DEFAULT:'#6c5ce7','light':'#a29bfe','dark':'#5a4bd1'},
+  success:'#00b894',error:'#e17055',warning:'#fdcb6e',info:'#74b9ff',
+  text:{DEFAULT:'#e0e0e0','muted':'#666','dim':'#444'}
+}}}}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body{font-family:'Inter',sans-serif}
+.swatch{width:60px;height:60px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600}
+.contrast-info{font-size:.65rem;color:#666;margin-top:.2rem}
+section{margin-bottom:3rem}
+h2{font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #1e1e2e}
+</style>
+</head>
+<body class="bg-bg text-text p-8 max-w-5xl mx-auto">
+<h1 class="text-2xl font-bold mb-1">🌙 Dark Mode Design System</h1>
+<p class="text-text-muted text-sm mb-8">VANTA / InstaGrowth component library • Tailwind CSS</p>
+
+<section>
+<h2>🎨 Color Palette</h2>
+<div class="flex flex-wrap gap-3">
+  <div><div class="swatch" style="background:#0a0a0f;color:#666">bg</div><div class="contrast-info">#0a0a0f</div></div>
+  <div><div class="swatch" style="background:#12121a;color:#666">surface</div><div class="contrast-info">#12121a</div></div>
+  <div><div class="swatch" style="background:#1e1e2e;color:#666">surface-50</div><div class="contrast-info">#1e1e2e</div></div>
+  <div><div class="swatch" style="background:#6c5ce7;color:#fff">accent</div><div class="contrast-info">#6c5ce7 • 4.6:1</div></div>
+  <div><div class="swatch" style="background:#a29bfe;color:#000">accent-lt</div><div class="contrast-info">#a29bfe • 8.2:1</div></div>
+  <div><div class="swatch" style="background:#00b894;color:#000">success</div><div class="contrast-info">#00b894 • 7.1:1</div></div>
+  <div><div class="swatch" style="background:#e17055;color:#000">error</div><div class="contrast-info">#e17055 • 5.4:1</div></div>
+  <div><div class="swatch" style="background:#fdcb6e;color:#000">warning</div><div class="contrast-info">#fdcb6e • 12.1:1</div></div>
+  <div><div class="swatch" style="background:#74b9ff;color:#000">info</div><div class="contrast-info">#74b9ff • 8.8:1</div></div>
+</div>
+<p class="text-text-muted text-xs mt-3">All foreground colors meet WCAG AA (4.5:1) against bg #0a0a0f. Accent on surface passes AA Large (3:1+).</p>
+</section>
+
+<section>
+<h2>🔘 Buttons</h2>
+<div class="flex flex-wrap gap-3 items-center">
+  <button class="bg-accent text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-accent-light transition">Primary</button>
+  <button class="bg-surface border border-surface-50 text-text px-5 py-2.5 rounded-lg font-semibold hover:border-accent transition">Secondary</button>
+  <button class="border border-accent text-accent px-5 py-2.5 rounded-lg font-semibold hover:bg-accent hover:text-white transition">Outline</button>
+  <button class="bg-error text-white px-5 py-2.5 rounded-lg font-semibold">Danger</button>
+  <button class="bg-success text-white px-5 py-2.5 rounded-lg font-semibold">Success</button>
+  <button class="bg-surface-50 text-text-muted px-5 py-2.5 rounded-lg font-semibold cursor-not-allowed opacity-50">Disabled</button>
+</div>
+</section>
+
+<section>
+<h2>📝 Inputs</h2>
+<div class="flex flex-wrap gap-4">
+  <div><label class="block text-xs text-text-muted mb-1">Default</label><input type="text" placeholder="Enter text..." class="bg-bg border border-surface-50 rounded-lg px-4 py-2.5 text-text text-sm outline-none focus:border-accent transition w-60"></div>
+  <div><label class="block text-xs text-text-muted mb-1">With icon</label><div class="relative"><span class="absolute left-3 top-2.5 text-text-muted">🔍</span><input type="text" placeholder="Search..." class="bg-bg border border-surface-50 rounded-lg pl-9 pr-4 py-2.5 text-text text-sm outline-none focus:border-accent transition w-60"></div></div>
+  <div><label class="block text-xs text-error mb-1">Error state</label><input type="text" value="Invalid input" class="bg-bg border border-error rounded-lg px-4 py-2.5 text-text text-sm outline-none w-60"></div>
+</div>
+</section>
+
+<section>
+<h2>🏷️ Badges & Tags</h2>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-accent/15 text-accent-light px-3 py-1 rounded-full text-xs font-semibold">Default</span>
+  <span class="bg-success/15 text-success px-3 py-1 rounded-full text-xs font-semibold">✓ Success</span>
+  <span class="bg-error/15 text-error px-3 py-1 rounded-full text-xs font-semibold">✗ Error</span>
+  <span class="bg-warning/15 text-warning px-3 py-1 rounded-full text-xs font-semibold">⚠ Warning</span>
+  <span class="bg-info/15 text-info px-3 py-1 rounded-full text-xs font-semibold">ℹ Info</span>
+  <span class="bg-surface-50 text-text-muted px-3 py-1 rounded-full text-xs font-semibold">Neutral</span>
+</div>
+</section>
+
+<section>
+<h2>🃏 Cards</h2>
+<div class="grid grid-cols-3 gap-4">
+  <div class="bg-surface border border-surface-50 rounded-2xl p-5"><h3 class="font-bold mb-2">Default Card</h3><p class="text-text-muted text-sm">Basic card component with border and padding.</p></div>
+  <div class="bg-surface border border-accent/30 rounded-2xl p-5 shadow-lg shadow-accent/10"><h3 class="font-bold mb-2">Highlighted Card</h3><p class="text-text-muted text-sm">Accent border with glow shadow.</p></div>
+  <div class="bg-gradient-to-br from-accent/20 to-surface rounded-2xl p-5"><h3 class="font-bold mb-2">Gradient Card</h3><p class="text-text-muted text-sm">Subtle gradient background.</p></div>
+</div>
+</section>
+
+<section>
+<h2>📊 Progress Bars</h2>
+<div class="space-y-3">
+  <div><div class="flex justify-between text-xs text-text-muted mb-1"><span>Upload</span><span>73%</span></div><div class="h-2 bg-surface-50 rounded-full overflow-hidden"><div class="h-full bg-accent rounded-full" style="width:73%"></div></div></div>
+  <div><div class="flex justify-between text-xs text-text-muted mb-1"><span>Health</span><span>92%</span></div><div class="h-2 bg-surface-50 rounded-full overflow-hidden"><div class="h-full bg-success rounded-full" style="width:92%"></div></div></div>
+  <div><div class="flex justify-between text-xs text-text-muted mb-1"><span>Storage</span><span>87%</span></div><div class="h-2 bg-surface-50 rounded-full overflow-hidden"><div class="h-full bg-warning rounded-full" style="width:87%"></div></div></div>
+</div>
+</section>
+
+<section>
+<h2>⚡ Alerts</h2>
+<div class="space-y-3">
+  <div class="bg-success/10 border border-success/30 rounded-xl px-4 py-3 text-sm flex items-center gap-2"><span>✅</span> Operation completed successfully.</div>
+  <div class="bg-error/10 border border-error/30 rounded-xl px-4 py-3 text-sm flex items-center gap-2"><span>❌</span> Something went wrong. Please try again.</div>
+  <div class="bg-warning/10 border border-warning/30 rounded-xl px-4 py-3 text-sm flex items-center gap-2"><span>⚠️</span> Rate limit approaching. Slow down.</div>
+  <div class="bg-info/10 border border-info/30 rounded-xl px-4 py-3 text-sm flex items-center gap-2"><span>ℹ️</span> New feature available. Check settings.</div>
+</div>
+</section>
+
+<section>
+<h2>📋 Table</h2>
+<div class="bg-surface border border-surface-50 rounded-xl overflow-hidden">
+  <table class="w-full text-sm">
+    <thead><tr class="border-b border-surface-50 text-text-muted"><th class="text-left px-4 py-3 font-medium">Agent</th><th class="text-left px-4 py-3 font-medium">Status</th><th class="text-left px-4 py-3 font-medium">Tasks</th><th class="text-right px-4 py-3 font-medium">Ops/hr</th></tr></thead>
+    <tbody>
+      <tr class="border-b border-surface-50 hover:bg-surface-50/50 transition"><td class="px-4 py-3">Sp3ct3R</td><td class="px-4 py-3"><span class="bg-success/15 text-success px-2 py-0.5 rounded-full text-xs">Active</span></td><td class="px-4 py-3">12</td><td class="px-4 py-3 text-right font-semibold">423</td></tr>
+      <tr class="border-b border-surface-50 hover:bg-surface-50/50 transition"><td class="px-4 py-3">Sh3dw</td><td class="px-4 py-3"><span class="bg-warning/15 text-warning px-2 py-0.5 rounded-full text-xs">Busy</span></td><td class="px-4 py-3">10</td><td class="px-4 py-3 text-right font-semibold">186</td></tr>
+      <tr class="hover:bg-surface-50/50 transition"><td class="px-4 py-3">An4lyst</td><td class="px-4 py-3"><span class="bg-success/15 text-success px-2 py-0.5 rounded-full text-xs">Active</span></td><td class="px-4 py-3">5</td><td class="px-4 py-3 text-right font-semibold">238</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section>
+<h2>🔲 Modal</h2>
+<div class="relative bg-black/50 rounded-xl p-8 flex items-center justify-content:center">
+  <div class="bg-surface border border-surface-50 rounded-2xl p-6 w-96 mx-auto shadow-2xl">
+    <h3 class="font-bold text-lg mb-2">Confirm Action</h3>
+    <p class="text-text-muted text-sm mb-6">Are you sure you want to proceed? This action cannot be undone.</p>
+    <div class="flex justify-end gap-3">
+      <button class="bg-surface-50 text-text-muted px-4 py-2 rounded-lg text-sm font-semibold">Cancel</button>
+      <button class="bg-error text-white px-4 py-2 rounded-lg text-sm font-semibold">Delete</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>🔄 Toggle & Checkbox</h2>
+<div class="flex gap-8 items-center">
+  <div class="flex items-center gap-3"><div class="w-11 h-6 bg-accent rounded-full relative"><div class="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 shadow"></div></div><span class="text-sm">Dark Mode On</span></div>
+  <div class="flex items-center gap-3"><div class="w-11 h-6 bg-surface-50 rounded-full relative"><div class="w-5 h-5 bg-text-muted rounded-full absolute top-0.5 left-0.5 shadow"></div></div><span class="text-sm text-text-muted">Notifications Off</span></div>
+  <div class="flex items-center gap-2"><div class="w-5 h-5 bg-accent rounded border-0 flex items-center justify-center text-white text-xs">✓</div><span class="text-sm">Checked</span></div>
+  <div class="flex items-center gap-2"><div class="w-5 h-5 bg-bg border border-surface-50 rounded"></div><span class="text-sm text-text-muted">Unchecked</span></div>
+</div>
+</section>
+
+<section>
+<h2>💬 Tooltip / Popover</h2>
+<div class="inline-block relative">
+  <button class="bg-surface border border-surface-50 px-4 py-2 rounded-lg text-sm">Hover me</button>
+  <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-surface-200 text-xs text-text px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">This is a tooltip <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-surface-200"></div></div>
+</div>
+</section>
+
+<section>
+<h2>📐 Typography</h2>
+<div class="space-y-2">
+  <div class="text-3xl font-extrabold">Heading 1 (text-3xl bold)</div>
+  <div class="text-2xl font-bold">Heading 2 (text-2xl bold)</div>
+  <div class="text-xl font-semibold">Heading 3 (text-xl semibold)</div>
+  <div class="text-base">Body text (text-base) — #e0e0e0 on #0a0a0f = 15.2:1 contrast ✓</div>
+  <div class="text-sm text-text-muted">Muted text (text-sm) — #666 on #0a0a0f = 4.8:1 contrast ✓ AA</div>
+  <div class="text-xs text-text-dim">Dim text (text-xs) — #444 on #0a0a0f = 2.9:1 contrast (decorative only)</div>
+</div>
+</section>
+
+<footer class="text-text-dim text-xs mt-8 pt-4 border-t border-surface-50">
+  Dark Mode Design System v1.0 • VANTA / InstaGrowth • Tailwind CSS config included in tailwind.config.js
+</footer>
+</body>
+</html>

@@ -12,8 +12,9 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+3. Read `AGENT_SYSTEM_PROMPTS.md` — your master operating system
+4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
 Don't ask permission. Just do it.
 
@@ -212,6 +213,26 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## Master System Prompts
+
+All agents operate from foundational system prompts:
+
+- **`AGENT_SYSTEM_PROMPTS.md`** — Master directives for Sp3ct3R, Sh3dw, and COO
+  - Sp3ct3R: Operations director (infrastructure, critical systems, problem-solving)
+  - Sh3dw: Design architect (visual, creative, aesthetic)
+  - System COO: Nervous system (orchestration, visibility, resource allocation)
+  - Global principles: All agents follow terse communication, testing, git discipline
+
+- **`AGENT_SPAWNING_GUIDE.md`** — How to spawn agents with system prompts
+  - Templates for different agent types
+  - Examples of good/bad spawns
+  - Decision authority matrix
+  - Status report format
+
+**When spawning agents:** Reference these prompts in the task. They define operating principles, decision-making authority, and success metrics.
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+**But AGENT_SYSTEM_PROMPTS.md is the operational backbone. Don't ignore it.**

@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@theme {
+  --color-brand: #6c5ce7;
+  --color-brand-light: #a29bfe;
+  --color-brand-blue: #74b9ff;
+  --color-dark: #0a0a0f;
+  --color-card: #12121a;
+  --color-card-border: #1e1e2e;
+  --color-success: #00b894;
+  --color-danger: #e17055;
+  --color-warning: #fdcb6e;
+  --color-muted: #666666;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-dark);
+    color: #e5e7eb;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility gradient-text {
+  background-image: linear-gradient(135deg, #6c5ce7, #a29bfe, #74b9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility glow {
+  box-shadow: 0 0 60px rgba(108, 92, 231, 0.3);
+}
+
+@utility glow-sm {
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4);
+}
+
+@utility card-base {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-card-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+@utility btn-primary {
+  background-color: var(--color-brand);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  &:hover {
+    background-color: var(--color-brand-light);
+    transform: translateY(-1px);
+  }
+}
+
+@utility btn-outline {
+  border: 1px solid var(--color-card-border);
+  color: var(--color-muted);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.2s;
+  &:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+}
+
+@utility input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-dark);
+  border: 1px solid var(--color-card-border);
+  border-radius: 0.5rem;
+  color: #e5e7eb;
+  outline: none;
+  transition: border-color 0.2s;
+  &:focus {
+    border-color: var(--color-brand);
+  }
+}

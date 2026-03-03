@@ -8,19 +8,20 @@
 
 ## 🔴 CRITICAL (Do First)
 
-- [ ] **Restart Dcash Arbitrage Bot**
+- [WIP] **Restart Dcash Arbitrage Bot**
   - Status: DOWN since Feb 22 (9 days)
   - Action: Restart process, verify Jupiter API + Helius RPC
-  - Owner: —
+  - Owner: Sp3ct3R
   - Est: 30 min
   - Path: `/Users/growthgod/dcash-arbitrage-bot/`
 
-- [ ] **Test Python FastAPI Service (port 8000)**
+- [WIP] **Test Python FastAPI Service (port 8000)**
   - Status: Untested in production
   - Action: Health check, run 100 test actions, measure ban rates
-  - Owner: —
+  - Owner: PYTHON_SERVICE_TEST agent
   - Est: 2 hours
   - Path: `/Users/growthgod/instagram-python/server.py`
+  - Started: Mar 3, 01:45 UTC
 
 ---
 
@@ -33,19 +34,21 @@
   - Est: 4 hours
   - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-mcp/`
 
-- [ ] **Investigate Fleet Sync Issue**
+- [WIP] **Investigate Fleet Sync Issue**
   - Status: 6 unprocessed posts (39 scheduled vs 33 executed)
   - Action: Debug lock timeout race condition
-  - Owner: —
+  - Owner: FLEET_SYNC_DEBUG agent
   - Est: 3 hours
   - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/backend/src/routes/orchestration.ts`
+  - Started: Mar 3, 01:45 UTC
 
-- [ ] **Deploy SCRAPERS_JSON to Railway**
+- [WIP] **Deploy SCRAPERS_JSON to Railway**
   - Status: Env var missing, backend 502 Bad Gateway
   - Action: Set env var on Railway backend service
-  - Owner: —
+  - Owner: RAILWAY_DEPLOY_ENV agent
   - Est: 15 min
   - Path: Railway dashboard
+  - Started: Mar 3, 01:45 UTC
 
 ---
 
@@ -58,12 +61,13 @@
   - Est: 4 hours
   - Path: Workspace configs
 
-- [ ] **Evaluate Instagram x-meta-zca Detection**
+- [WIP] **Evaluate Instagram x-meta-zca Detection**
   - Status: New header flags device authenticity
   - Action: Review VANTA fleet risk, consider Nimble alternative
-  - Owner: —
+  - Owner: INSTAGRAM_DETECTION_EVAL agent
   - Est: 6 hours
   - Path: `/Users/growthgod/VantaLABs_gg/Main/`
+  - Started: Mar 3, 01:45 UTC
 
 - [ ] **Clean PC for Qwen 23k Context**
   - Status: Need ~12GB free for Qwen

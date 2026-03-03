@@ -315,10 +315,11 @@ Theta-infused trap beat generator + Gemini Lyria API. Complete. `/Users/growthgo
 - **See:** CLAUDE.md for full configuration + troubleshooting
 
 ### Agent Model Routing
-- **Sp3ct3R (main):** lmstudio/qwen/qwen3.5-9b
+- **Sp3ct3R (main):** lmstudio/qwen/qwen3.5-9b (max 20k tokens)
 - **Sh3dw (visual):** lmstudio/qwen/qwen3.5-9b (can override to sonnet if needed)
-- **Claude Code:** Routes to LM Studio (localhost:1234) via ~/.claude/settings.json
-- **Cost:** $0 (all local inference)
+- **Claude Code:** Routes to LM Studio (localhost:1234) via ~/.claude/settings.json (max 20k tokens)
+- **Fallback:** anthropic/claude-haiku-4-5-20251001 (if LM Studio unavailable)
+- **Cost:** $0 local, ~$0.80/1M tokens if fallback used
 
 ---
 

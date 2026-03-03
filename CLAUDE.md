@@ -32,14 +32,16 @@ LM Studio (http://localhost:1234)
   "agents": {
     "defaults": {
       "model": {
-        "primary": "lmstudio/qwen/qwen3.5-9b"
+        "primary": "lmstudio/qwen/qwen3.5-9b",
+        "maxTokens": 20000,
+        "fallback": "anthropic/claude-haiku-4-5-20251001"
       }
     }
   }
 }
 ```
 
-✅ **Already set** — All OpenClaw agents use Qwen 3.5 by default
+✅ **Already set** — All OpenClaw agents use Qwen 3.5 by default, with Anthropic Haiku fallback
 
 ---
 
@@ -62,12 +64,38 @@ claude --model google/gemma-3-4b
 
 ---
 
+## Fallback Behavior
+
+**If LM Studio goes offline or has no model loaded:**
+- Agents automatically fallback to **Anthropic Haiku** (cloud)
+- No manual intervention needed
+- Works seamlessly
+
+```
+Try LM Studio (localhost:1234)
+  ↓
+If unavailable or error
+  ↓
+Use Anthropic Haiku (api.anthropic.com)
+  ↓
+Service continues
+```
+
+**Cost implications:**
+- LM Studio: $0 (local)
+- Fallback (Haiku): ~$0.80 per 1M tokens (cloud, low cost)
+
+---
+
 ## LM Studio Status
 
-### Required
+### Optional (if using local models)
 - **LM Studio running** at http://localhost:1234
 - **API server enabled** (not just GUI)
-- Model loaded in context
+- Model loaded in context (e.g., Qwen 3.5 at 23k)
+
+### If not running
+- Agents will use Anthropic Haiku automatically (no action needed)
 
 ### How to Start LM Studio
 ```bash
@@ -82,6 +110,7 @@ lm-studio start-server
 ```bash
 curl http://localhost:1234/v1/models
 # Should return list of loaded models
+# If 404/refused: LM Studio is down, fallback active
 ```
 
 ---

@@ -23,6 +23,82 @@
 
 ---
 
+## 🎨 DESIGN FLEET (Sh3dw Conductor - Mar 3)
+
+**Status:** Spawning 10 specialized design agents in parallel
+
+- [WIP] **UI_ONBOARDING_DESIGNER**
+  - Status: MVP onboarding flow UI (handle → vibe → plan → password)
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 30 min
+  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/designs/onboarding-flow.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **VISUAL_KANBAN_POLISH**
+  - Status: Improve Kanban dashboard (colors, animations, status badges)
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 45 min
+  - Path: `/Users/growthgod/VantaLABs_gg/Main/mission-kanban-dashboard.js`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **VISUAL_FLEET_STATUS**
+  - Status: Device health heatmap + throughput visualization
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 40 min
+  - Path: `/Users/growthgod/VantaLABs_gg/Main/fleet-status-visual.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **DESIGN_AFFINITY_CHARTS**
+  - Status: Confidence gauges, trend sparklines, cluster maps
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 45 min
+  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/designs/affinity-charts.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **VISUAL_CONTENT_QA**
+  - Status: Frame quality indicator, color histogram, blur detection UI
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 35 min
+  - Path: `/Users/growthgod/.openclaw/workspace/designs/content-qa.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **DESIGN_PROFILE_AUDIT**
+  - Status: Bio diff viewer, follower timeline, engagement heatmap
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 40 min
+  - Path: `/Users/growthgod/VantaLABs_gg/Main/profile-audit-visual.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **UI_MARKETING_LANDING**
+  - Status: SaaS landing page (hero + 3 features + pricing + CTA)
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 50 min
+  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/landing.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **VISUAL_AGENT_HUB**
+  - Status: Unified Agent Operations Center (all agents' status + metrics)
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 40 min
+  - Path: `/Users/growthgod/VantaLABs_gg/Main/agent-operations-center.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **VISUAL_VIDEO_ANALYZER**
+  - Status: Video QA tool (frame quality, text readability, aspect ratio)
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 35 min
+  - Path: `/Users/growthgod/.openclaw/workspace/designs/video-analyzer.html`
+  - Started: Mar 3, 13:42 PST
+
+- [WIP] **DESIGN_DARK_THEME**
+  - Status: Tailwind dark mode system + component library
+  - Owner: Sh3dw conductor (child agent)
+  - Est: 45 min
+  - Path: `/Users/growthgod/.openclaw/workspace/instagrowth-saas/designs/dark-theme.html`
+  - Started: Mar 3, 13:42 PST
+
+---
+
 ## 🟡 HIGH (This Week)
 
 - [ ] **MCP Phase 2: Test instagrowth-mcp**

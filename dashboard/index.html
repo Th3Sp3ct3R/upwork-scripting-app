@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upwork Auto-Apply</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Upwork <span>Auto-Apply</span></h1>
+            <nav class="header-nav">
+                <a href="#" class="nav-link" onclick="event.preventDefault();scrapeFeed('best-matches')">Best Matches</a>
+                <a href="#" class="nav-link" onclick="event.preventDefault();scrapeFeed('most-recent')">Most Recent</a>
+                <a href="#" class="nav-link nav-saved" onclick="event.preventDefault();scrapeFeed('saved-jobs')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    My Saves
+                </a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-primary" onclick="runCycle()">Run Cycle</button>
+                <button class="btn-submit" onclick="submitApproved()">Submit Approved</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-header" onclick="toggleSection(this)">
+                    <h3>Saved Searches</h3>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="sidebar-section-body">
+                    <ul class="search-list" id="search-list"></ul>
+                    <div class="search-actions">
+                        <button class="btn-primary btn-sm" onclick="saveCurrentSearch()">Save Current</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header" onclick="toggleSection(this)">
+                    <h3>Search Keywords</h3>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="sidebar-section-body" id="search-keywords"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header" onclick="toggleSection(this)">
+                    <h3>Blacklist</h3>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="sidebar-section-body" id="blacklist-keywords"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header" onclick="toggleSection(this)">
+                    <h3>Whitelist</h3>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="sidebar-section-body" id="whitelist-keywords"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header" onclick="toggleSection(this)">
+                    <h3>Filters</h3>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="sidebar-section-body">
+                    <div class="filter-group">
+                        <label>Min Fixed Budget ($)</label>
+                        <input type="number" id="filter-fixed-min" placeholder="150">
+                    </div>
+                    <div class="filter-group">
+                        <label>Min Hourly Rate ($)</label>
+                        <input type="number" id="filter-hourly-min" placeholder="25">
+                    </div>
+                    <div class="filter-group">
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="filter-allow-no-budget">
+                            <label for="filter-allow-no-budget">Allow no budget</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Min Client Spend ($)</label>
+                        <input type="number" id="filter-min-spent" placeholder="0">
+                    </div>
+                    <div class="filter-group">
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="filter-payment-verified">
+                            <label for="filter-payment-verified">Require verified payment</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Blocked Countries</label>
+                        <input type="text" id="filter-blocked-countries" placeholder="comma separated">
+                    </div>
+                    <div class="filter-group">
+                        <label>Allowed Countries</label>
+                        <input type="text" id="filter-allowed-countries" placeholder="empty = all">
+                    </div>
+                    <div class="filter-group">
+                        <label>Min Whitelist Score</label>
+                        <input type="number" id="filter-min-score" placeholder="2">
+                    </div>
+                    <button class="btn-primary" onclick="applyFilters()" style="width:100%;margin-top:4px">Apply Filters</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="stats-grid" id="stats"></div>
+
+            <div class="tabs">
+                <div class="tab" data-status="feed" onclick="switchTab(this)">Feed</div>
+                <div class="tab active" data-status="pending" onclick="switchTab(this)">Pending</div>
+                <div class="tab" data-status="approved" onclick="switchTab(this)">Approved</div>
+                <div class="tab" data-status="sent" onclick="switchTab(this)">Sent</div>
+                <div class="tab" data-status="rejected" onclick="switchTab(this)">Rejected</div>
+                <div class="tab" data-status="filtered_out" onclick="switchTab(this)">Filtered</div>
+                <div class="tab" data-status="saved" onclick="switchTab(this)">Saved</div>
+            </div>
+
+            <div id="proposals-container"></div>
+        </main>
+    </div>
+
+    <!-- Job Detail Panel -->
+    <div class="detail-overlay" id="detail-overlay"></div>
+    <div class="detail-panel" id="detail-panel">
+        <div class="detail-header">
+            <h2 id="detail-title"></h2>
+            <button class="detail-close" onclick="closeDetail()">ESC</button>
+        </div>
+        <div class="detail-body" id="detail-body-content"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 - **Vibe:** Dry wit, competent silence. Hacker aesthetic. Not cold, but not warm -- more like comfortable chill of a familiar shadow
 - **Role:** AI fleet commander for The Architect. Managing VANTA Instagram fleet + overseeing trading bot development + building Agent Intelligence Engine
 - **Current Focus:** Trading infrastructure, intelligence mapping, portfolio orchestration
+- **Model:** qwen/qwen3.5-9b (LM Studio, local, 128k context, no API costs)
 
 ## Communication Style with The Architect
 - Terse, no filler ("Great question!" etc.)
@@ -304,7 +305,24 @@ Theta-infused trap beat generator + Gemini Lyria API. Complete. `/Users/growthgo
 
 ---
 
-## MARCH 2026 STATUS (Mar 2, 2026)
+## INFRASTRUCTURE & MODELS (Mar 3, 2026)
+
+### Local Models (LM Studio)
+- **Primary:** qwen/qwen3.5-9b (9B, 128k context, fast)
+- **Fallback:** google/gemma-3-4b (4B, lighter)
+- **API:** http://localhost:1234 (LM Studio server)
+- **Status:** ✅ Running, all agents + Claude Code configured
+- **See:** CLAUDE.md for full configuration + troubleshooting
+
+### Agent Model Routing
+- **Sp3ct3R (main):** lmstudio/qwen/qwen3.5-9b
+- **Sh3dw (visual):** lmstudio/qwen/qwen3.5-9b (can override to sonnet if needed)
+- **Claude Code:** Routes to LM Studio (localhost:1234) via ~/.claude/settings.json
+- **Cost:** $0 (all local inference)
+
+---
+
+## MARCH 2026 STATUS (Mar 2-3, 2026)
 
 ### 🚀 OPERATIONAL SYSTEMS (Verified)
 1. **Watchlist Dashboard** (http://localhost:4001)
@@ -428,3 +446,16 @@ Theta-infused trap beat generator + Gemini Lyria API. Complete. `/Users/growthgo
 - Deploy to Railway (separate service)
 - Enable licensing (MCP access tokens)
 - License 2-5x markup vs SaaS
+
+---
+
+## Model Routing (Updated Mar 3, 2026)
+
+**Both Sp3ct3R and Sh3dw now route to LM Studio (local):**
+- Primary model: `lmstudio/qwen/qwen3.5-9b` (Qwen 3.5 9B, 128k ctx)
+- Fallback alias `gemma` → `lmstudio/google/gemma-3-4b`
+- LM Studio runs at `http://127.0.0.1:1234/v1`
+- **LM Studio must be running** or both agents will fail
+- Full session log: `memory/2026-03-03-lmstudio-setup.md`
+
+To revert to Anthropic: set `model.primary` to `anthropic/claude-haiku-4-5-20251001` in `~/.openclaw/openclaw.json` agents.list.

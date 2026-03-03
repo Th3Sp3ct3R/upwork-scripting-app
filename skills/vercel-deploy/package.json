@@ -1,0 +1,39 @@
+{
+  "name": "vercel-deploy-skill",
+  "version": "1.0.0",
+  "description": "Reusable skill for deploying Next.js and Node.js projects to Vercel",
+  "main": "script/deploy.sh",
+  "scripts": {
+    "test": "bash tests/test-deploy.sh",
+    "validate": "bash script/validate.sh",
+    "help": "bash script/deploy.sh --help"
+  },
+  "keywords": [
+    "vercel",
+    "deployment",
+    "next.js",
+    "node.js",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "vercel": "^latest"
+  },
+  "devDependencies": {
+    "jq": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenClaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenClaw/skills/issues"
+  },
+  "homepage": "https://github.com/OpenClaw/skills/tree/main/vercel-deploy"
+}

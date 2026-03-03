@@ -8,12 +8,11 @@
 
 ## 🔴 CRITICAL (Do First)
 
-- [WIP] **Restart Dcash Arbitrage Bot**
-  - Status: DOWN since Feb 22 (9 days)
-  - Action: Restart process, verify Jupiter API + Helius RPC
-  - Owner: Sp3ct3R
-  - Est: 30 min
-  - Path: `/Users/growthgod/dcash-arbitrage-bot/`
+- [x] **Restart Dcash Arbitrage Bot** ⚠️ (Mar 3, 13:38 PST)
+  - Owner: DCASH_RESTART agent
+  - Time: 1m52s
+  - Result: FAILED — Bot directory does not exist on this machine. No dcash process, no files found. Closest match: moltbot-main-33 (Solana-related but not dcash).
+  - Action: Locate actual repo/server where bot runs, re-clone if deleted, or clarify deployment location
 
 - [WIP] **Test Python FastAPI Service (port 8000)**
   - Status: Untested in production

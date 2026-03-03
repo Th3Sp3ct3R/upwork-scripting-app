@@ -61,13 +61,11 @@
   - Est: 4 hours
   - Path: Workspace configs
 
-- [WIP] **Evaluate Instagram x-meta-zca Detection**
-  - Status: New header flags device authenticity
-  - Action: Review VANTA fleet risk, consider Nimble alternative
+- [x] **Evaluate Instagram x-meta-zca Detection** ✅ (Mar 3, 13:38 PST)
   - Owner: INSTAGRAM_DETECTION_EVAL agent
-  - Est: 6 hours
-  - Path: `/Users/growthgod/VantaLABs_gg/Main/`
-  - Started: Mar 3, 01:45 UTC
+  - Time: 1m10s
+  - Result: MEDIUM risk, unverified threat. No ban waves detected. Fleet issues are operational (broken vision API), NOT detection. Monitor 2-4 weeks before pivot.
+  - Action: Fix vision pipeline first, test post batch from GeeLark, get Nimble URL
 
 - [ ] **Clean PC for Qwen 23k Context**
   - Status: Need ~12GB free for Qwen

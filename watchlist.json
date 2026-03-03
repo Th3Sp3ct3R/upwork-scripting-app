@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "total": 1,
+    "watched": 0,
+    "unwatched": 1,
+    "updated": "2026-03-03T10:35:21Z"
+  },
+  "categories": {
+    "ai": {
+      "name": "🤖 AI & Machine Learning",
+      "items": [
+        {
+          "url": "https://www.promptingguide.ai/",
+          "title": "Prompt Engineering Guide",
+          "description": "Comprehensive guide to prompt engineering, LLM capabilities, techniques, and best practices. Includes papers, courses, advanced techniques, and model-specific guides.",
+          "type": "docs",
+          "watched": false,
+          "added": "2026-03-03"
+        }
+      ]
+    },
+    "development": {
+      "name": "🚀 Development & Code",
+      "items": []
+    },
+    "tools": {
+      "name": "🔧 Tools & Infrastructure",
+      "items": []
+    },
+    "general": {
+      "name": "📖 General Learning",
+      "items": []
+    },
+    "trading": {
+      "name": "💰 Trading & Finance",
+      "items": []
+    },
+    "data": {
+      "name": "📊 Data & Analytics",
+      "items": []
+    },
+    "growth": {
+      "name": "🎯 Growth & Marketing",
+      "items": []
+    }
+  }
+}

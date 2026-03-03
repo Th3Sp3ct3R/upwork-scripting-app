@@ -8,11 +8,11 @@
 
 ## 🔴 CRITICAL (Do First)
 
-- [x] **Restart Dcash Arbitrage Bot** ⚠️ (Mar 3, 13:38 PST)
-  - Owner: DCASH_RESTART agent
-  - Time: 1m52s
-  - Result: FAILED — Bot directory does not exist on this machine. No dcash process, no files found. Closest match: moltbot-main-33 (Solana-related but not dcash).
-  - Action: Locate actual repo/server where bot runs, re-clone if deleted, or clarify deployment location
+- [ ] **Restart Dcash Arbitrage Bot** 🔵 BACKLOG
+  - Status: Moved to backlog. Not needed for MVP launch.
+  - Owner: —
+  - Est: TBD
+  - Path: Unknown location (need to relocate bot)
 
 - [x] **Test Python FastAPI Service (port 8000)** ✅ (Mar 3, 13:39 PST)
   - Owner: PYTHON_SERVICE_TEST agent
